@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Foodies"
 include(":app")
- 
+include(":features:product_catalog")
