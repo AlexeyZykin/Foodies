@@ -1,4 +1,4 @@
-package com.alexisdev.foodies.ui.theme
+package com.alexisdev.core.ui.theme
 
 import android.app.Activity
 import android.os.Build
