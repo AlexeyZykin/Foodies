@@ -50,6 +50,15 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":features:product_catalog"))
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.navigation)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity)
