@@ -41,10 +41,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":app"))
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.activity)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)

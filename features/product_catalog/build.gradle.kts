@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":products_api"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -48,8 +48,11 @@ dependencies {
     implementation(libs.koin.compose.navigation)
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.activity)
+    implementation(libs.kotlinx.coroutines)
+
+    implementation(libs.androidx.compose.lifecycle)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
