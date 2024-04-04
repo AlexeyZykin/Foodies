@@ -1,10 +1,6 @@
-package com.alexisdev.core.ui.component
+package com.alexisdev.foodies.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -12,7 +8,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexisdev.core.R
+import com.alexisdev.foodies.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,7 +24,7 @@ fun CatalogTopBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = onFilterClick) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_filter),
                     contentDescription = null
@@ -36,7 +32,7 @@ fun CatalogTopBar(
             }
         },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = onSearchActionClick) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = null

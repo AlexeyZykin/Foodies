@@ -28,21 +28,29 @@ import androidx.compose.ui.unit.dp
 import com.alexisdev.product_catalog.R
 import com.alexisdev.product_catalog.presentation.utils.PhonePreview
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterBottomSheet(
+    filterTags: List<String>,
+    showFilterBottomSheet: @Composable () -> Unit
+) {
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FilterBottomSheetLayout(
     filterTags: List<String>,
     onDismiss: () -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
-    var showBottomSheet by remember { mutableStateOf(false) }
+    var showBottomSheet by remember { mutableStateOf(true) }
 
    if (showBottomSheet) {
        ModalBottomSheet(
            sheetState = sheetState,
            dragHandle = { BottomSheetDefaults.DragHandle() },
-           onDismissRequest = { showBottomSheet = false }
+           onDismissRequest = onDismiss
        ) {
            FilterBottomSheetContent(filterTags = filterTags)
        }
@@ -70,7 +78,8 @@ fun FilterBottomSheetContent(
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(16.dp)
+                .padding(bottom = 32.dp),
         ) {
             Text(
                 text = "Готово",//stringResource(id = R.string.filter_ready),

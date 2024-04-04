@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Foodies</string>
     <string name="android">vc</string>
+    <string name="label_bottom_catalog">Catalog</string>
+    <string name="label_bottom_cart">Cart</string>
+    <string name="title_product_details">Product details</string>
+    <string name="title_shopping_cart">Shopping cart</string>
 </resources>
