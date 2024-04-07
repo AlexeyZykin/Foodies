@@ -1,6 +1,0 @@
-package com.alexisdev.product_catalog.domain.model
-
-data class Tag(
-    val id: Int,
-    val name: String
-)

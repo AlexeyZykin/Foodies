@@ -5,7 +5,7 @@ import com.alexisdev.product_catalog.domain.repository.ProductCatalogRepository
 import kotlinx.coroutines.flow.Flow
 
 class FetchProductsUseCase(private val productCatalogRepository: ProductCatalogRepository) {
-    suspend fun invoke(categoryId: Int, tagIds: List<Int>): Flow<List<Product>> {
-        return productCatalogRepository.fetchProducts(categoryId, tagIds)
+    suspend fun invoke(categoryId: Int, tagIds: List<Int>) {
+
     }
 }

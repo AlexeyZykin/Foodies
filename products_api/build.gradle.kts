@@ -44,6 +44,6 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.mockfit.runtime)
-    kapt(libs.mockfit.compiler)
+    testImplementation(libs.okhttp.mockwebserver)
+
 }

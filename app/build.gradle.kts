@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":features:product_catalog"))
+    implementation(project(":products_api"))
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
