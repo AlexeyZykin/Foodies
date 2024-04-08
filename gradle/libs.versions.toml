@@ -10,6 +10,7 @@ lifecycle-viewmodel-compose = "2.7.0"
 lifecycle-ktx = "2.7.0"
 kotlinx-coroutines-android = "1.7.1"
 glide = "4.16.0"
+glide-compose = "1.0.0-beta01"
 kotlin-kapt = "1.9.0"
 navigationCompose = "2.7.7"
 room = "2.6.1"
@@ -18,7 +19,7 @@ koin-compose = "3.5.3"
 org-jetbrains-kotlin-jvm = "1.9.0"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
-
+coil = "2.6.0"
 
 [libraries]
 
@@ -27,6 +28,9 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide"}
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide-compose" }
+
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
@@ -67,6 +71,6 @@ okhttp-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.
 
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-kapt" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-kapt" }
 androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }

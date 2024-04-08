@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -41,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":products_api"))
+    implementation(project(":core"))
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -49,6 +51,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines)
+
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.compose.lifecycle)
     implementation(libs.androidx.compose.runtime)
