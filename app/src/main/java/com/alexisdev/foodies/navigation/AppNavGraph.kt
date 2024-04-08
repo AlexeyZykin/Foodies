@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.alexisdev.product_catalog.presentation.CatalogSearchScreen
 import com.alexisdev.product_catalog.presentation.ProductCatalogScreen
 import com.alexisdev.product_catalog.presentation.ProductCatalogViewModel
+import com.alexisdev.splashscreen.SplashScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -17,9 +18,15 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Route.Catalog.route,
+        startDestination = Route.SplashScreen.route,
         modifier = modifier
     ) {
+
+        composable(route = Route.SplashScreen.route) {
+            SplashScreen {
+                navController.navigate(route = Route.Catalog.route)
+            }
+        }
 
         composable(route = Route.Catalog.route) {
             val productCatalogViewModel = koinViewModel<ProductCatalogViewModel>()

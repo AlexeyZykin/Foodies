@@ -27,7 +27,7 @@ fun AppBar(
 
         is Route.CatalogSearch -> CatalogSearch(navController)
 
-        else -> DefaultTopBar(currentScreen = currentScreen)
+        else -> { }//DefaultTopBar(currentScreen = currentScreen)
     }
 }
 

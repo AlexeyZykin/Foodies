@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":features:product_catalog"))
+    implementation(project(":features:splashscreen"))
     implementation(project(":products_api"))
 
     implementation(platform(libs.koin.bom))
@@ -60,6 +61,7 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
 
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.runtime)

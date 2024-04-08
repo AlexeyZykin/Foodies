@@ -7,6 +7,8 @@ sealed class Route(
     val route: String,
     val titleRes: Int?
 ) {
+    data object SplashScreen: Route(route = "splash", titleRes = null)
+
     data object Catalog: Route(route = "catalog", titleRes = null)
 
     data object CatalogFilter: Route(route = "catalog_filter", titleRes = null)

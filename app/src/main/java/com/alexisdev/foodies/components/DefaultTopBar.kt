@@ -30,7 +30,7 @@ fun DefaultTopBar(
         },
         navigationIcon = {
             IconButton(onClick = { /*TODO*/ }) {
-                Icon(imageVector = Icons.Default.Favorite, contentDescription = null)
+
             }
         }
 
