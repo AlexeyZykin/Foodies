@@ -1,4 +1,4 @@
-package com.alexisdev.product_catalog.presentation
+package com.alexisdev.product_catalog.presentation.model
 
 data class CategoryUi(
     val idCategory: Int,

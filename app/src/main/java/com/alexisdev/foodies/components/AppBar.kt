@@ -10,9 +10,12 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.alexisdev.foodies.navigation.Route
 import com.alexisdev.foodies.navigation.navigateSingleTopTo
+import com.alexisdev.product_catalog.presentation.SearchViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AppBar(
@@ -25,7 +28,10 @@ fun AppBar(
             onSearchActionClick = { navController.navigateSingleTopTo(Route.CatalogSearch.route) }
         )
 
-        is Route.CatalogSearch -> CatalogSearch(navController)
+//        is Route.CatalogSearch -> {
+//            val searchViewModel = koinViewModel<SearchViewModel>()
+//            CatalogSearch(navController,searchViewModel)
+//        }
 
         else -> { }//DefaultTopBar(currentScreen = currentScreen)
     }

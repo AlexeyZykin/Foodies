@@ -14,4 +14,9 @@ interface ProductsApi {
     suspend fun fetchMealsByCategory(
         @Query("c") category: String
     ) : AllMealsDTO
+
+    @GET("search.php?")
+    suspend fun searchMeal(
+        @Query("s") query: String
+    ) : AllMealsDTO
 }

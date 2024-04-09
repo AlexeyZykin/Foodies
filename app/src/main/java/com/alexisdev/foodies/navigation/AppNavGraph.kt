@@ -5,9 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.alexisdev.product_catalog.presentation.CatalogSearchScreen
+import com.alexisdev.product_catalog.presentation.SearchScreenContent
 import com.alexisdev.product_catalog.presentation.ProductCatalogScreen
 import com.alexisdev.product_catalog.presentation.ProductCatalogViewModel
+import com.alexisdev.product_catalog.presentation.SearchViewModel
 import com.alexisdev.splashscreen.SplashScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -36,7 +37,10 @@ fun AppNavGraph(
         }
 
         composable(route = Route.CatalogSearch.route) {
-            CatalogSearchScreen()
+            val searchViewModel = koinViewModel<SearchViewModel>()
+            SearchScreenContent(viewModel = searchViewModel) {
+                navController.navigateUp()
+            }
         }
 
         composable(route = Route.ProductDetails.route) {

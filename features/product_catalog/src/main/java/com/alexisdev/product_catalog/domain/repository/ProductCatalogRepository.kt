@@ -6,5 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProductCatalogRepository {
     suspend fun getCategoryList(): List<Category>
-    suspend fun fetchMealsCategory(category: String): Flow<List<Meal>>
+    fun fetchMealsCategory(category: String): Flow<List<Meal>>
+    fun searchMeal(query: String): Flow<List<Meal>>
+
 }

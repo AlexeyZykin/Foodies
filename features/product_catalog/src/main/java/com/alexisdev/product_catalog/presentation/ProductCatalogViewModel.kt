@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexisdev.product_catalog.domain.usecase.FetchMealsUseCase
 import com.alexisdev.product_catalog.domain.usecase.GetCategoryListUseCase
+import com.alexisdev.product_catalog.presentation.model.CategoryUi
+import com.alexisdev.product_catalog.presentation.model.MealUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
