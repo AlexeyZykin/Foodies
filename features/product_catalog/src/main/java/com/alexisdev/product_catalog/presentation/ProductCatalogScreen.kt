@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.alexisdev.core.ui.components.CounterCard
 import com.alexisdev.core.ui.components.FoodiesButton
@@ -41,6 +42,7 @@ import com.alexisdev.product_catalog.presentation.model.MealUi
 @Composable
 fun ProductCatalogScreen(
     viewModel: ProductCatalogViewModel,
+    onClickItem: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val categories = viewModel.categories.observeAsState().value
@@ -55,7 +57,7 @@ fun ProductCatalogScreen(
                 MealCategories(categories = categories, viewModel = viewModel)
             }
             if (!meals.isNullOrEmpty()) {
-                MealList(meals)
+                MealList(meals, onClickItem)
             }
         }
         Box(contentAlignment = Alignment.BottomCenter) {
@@ -96,12 +98,14 @@ fun MealCategories(categories: List<CategoryUi>, viewModel: ProductCatalogViewMo
 @Composable
 fun MealList(
     meals: List<MealUi>,
+    onClickItem: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
         items(meals) { item ->
             MealItem(
                 mealUi = item,
+                onClickItem = onClickItem,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -111,7 +115,11 @@ fun MealList(
 }
 
 @Composable
-fun MealItem(mealUi: MealUi, modifier: Modifier = Modifier) {
+fun MealItem(
+    mealUi: MealUi,
+    onClickItem: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     var counterState by remember {
         mutableIntStateOf(0)
     }
@@ -122,6 +130,7 @@ fun MealItem(mealUi: MealUi, modifier: Modifier = Modifier) {
             disabledContainerColor = Color.Unspecified,
             disabledContentColor = Color.Unspecified
         ),
+        onClick = { onClickItem(mealUi.idMeal) },
         modifier = modifier
     ) {
         Row {

@@ -1,4 +1,4 @@
-package com.alexisdev.product_catalog.koin
+package com.alexisdev.product_catalog.di
 
 import com.alexisdev.product_catalog.data.repository.ProductCatalogRepositoryImpl
 import com.alexisdev.product_catalog.domain.repository.ProductCatalogRepository

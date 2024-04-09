@@ -1,33 +1,14 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.alexisdev.foodies"
+    namespace = "com.alexisdev.product_details"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.alexisdev.foodies"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -42,19 +23,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":features:product_catalog"))
-    implementation(project(":features:product_details"))
-    implementation(project(":features:splashscreen"))
     implementation(project(":products_api"))
+    implementation(project(":core"))
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
@@ -62,9 +35,12 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
 
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.coroutines)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.androidx.compose.lifecycle)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -73,5 +49,4 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

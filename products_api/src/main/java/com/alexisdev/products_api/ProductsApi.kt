@@ -19,4 +19,9 @@ interface ProductsApi {
     suspend fun searchMeal(
         @Query("s") query: String
     ) : AllMealsDTO
+
+    @GET("lookup.php")
+    suspend fun fetchMealDetails(
+        @Query("i") id: Int
+    ) : AllMealsDTO
 }

@@ -32,6 +32,7 @@ import com.alexisdev.product_catalog.R
 @Composable
 fun SearchScreenContent(
     viewModel: SearchViewModel,
+    onClickItem: (Int) -> Unit,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -39,6 +40,7 @@ fun SearchScreenContent(
     ) { innerPadding ->
         SearchScreenContent(
             viewModel = viewModel,
+            onClickItem = onClickItem,
             modifier = Modifier.padding(innerPadding)
         )
     }
@@ -46,11 +48,15 @@ fun SearchScreenContent(
 }
 
 @Composable
-fun SearchScreenContent(viewModel: SearchViewModel, modifier: Modifier = Modifier) {
+fun SearchScreenContent(
+    viewModel: SearchViewModel,
+    onClickItem: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val meals = viewModel.meals.observeAsState().value
     Surface(modifier = modifier) {
         if (!meals.isNullOrEmpty()) {
-            MealList(meals = meals)
+            MealList(meals = meals, onClickItem)
         }
     }
 }

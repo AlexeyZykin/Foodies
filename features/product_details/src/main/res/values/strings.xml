@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_tags">Tags:</string>
+    <string name="details_category">Category:</string>
+    <string name="details_meal_area">Meal area:</string>
+    <string name="details_method_of_preparation">Method of preparation</string>
+</resources>

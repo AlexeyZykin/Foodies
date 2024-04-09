@@ -1,7 +1,7 @@
 package com.alexisdev.foodies
 
 import android.app.Application
-import com.alexisdev.foodies.koin.koinModules
+import com.alexisdev.foodies.di.koinModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
