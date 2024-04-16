@@ -12,8 +12,8 @@ import org.koin.dsl.module
 
 val featureProductCatalogModule = module {
     single<ProductCatalogRepository> { ProductCatalogRepositoryImpl(get()) }
-    viewModel { ProductCatalogViewModel(get(), get()) }
-    viewModel { SearchViewModel(get()) }
+    viewModel { ProductCatalogViewModel(get(), get(), get(), get()) }
+    viewModel { SearchViewModel(get(), get(), get()) }
     factory { FetchMealsUseCase(get()) }
     factory { GetCategoryListUseCase(get()) }
     factory { SearchUseCase(get()) }

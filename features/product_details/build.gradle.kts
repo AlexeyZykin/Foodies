@@ -26,8 +26,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":products_api"))
-    implementation(project(":core"))
+    implementation(project(":core:products_api"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:model"))
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

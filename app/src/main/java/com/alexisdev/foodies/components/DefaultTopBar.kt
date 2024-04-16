@@ -10,15 +10,18 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.alexisdev.foodies.R
 import com.alexisdev.foodies.navigation.Route
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DefaultTopBar(
-    currentScreen: Route
+    currentScreen: Route,
+    onBack: () -> Unit
 ) {
     TopAppBar(
         title = {
@@ -29,8 +32,11 @@ fun DefaultTopBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
-
+            IconButton(onClick = onBack) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = null
+                )
             }
         }
 
@@ -41,5 +47,5 @@ fun DefaultTopBar(
 @Preview
 @Composable
 fun DefaultTobBarPreview() {
-    DefaultTopBar(currentScreen = Route.CatalogFilter)
+    DefaultTopBar(currentScreen = Route.CatalogFilter, { })
 }

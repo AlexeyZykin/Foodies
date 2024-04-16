@@ -4,7 +4,7 @@
     <style name="Theme.Foodies" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.Splash" parent="Theme.SplashScreen">
-        <item name="android:windowBackground">@color/orange</item>
+        <item name="android:windowBackground">@color/primary_color</item>
         <item name="windowSplashScreenAnimatedIcon">@null</item>
         <item name="postSplashScreenTheme">@style/Theme.Foodies</item>
         <item name="android:navigationBarColor">@color/nav_bar_color</item>

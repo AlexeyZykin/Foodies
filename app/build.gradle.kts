@@ -50,11 +50,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(project(":features:product_catalog"))
     implementation(project(":features:product_details"))
+    implementation(project(":features:cart"))
     implementation(project(":features:splashscreen"))
-    implementation(project(":products_api"))
+    implementation(project(":core:products_api"))
+    implementation(project(":core:database"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:ui"))
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

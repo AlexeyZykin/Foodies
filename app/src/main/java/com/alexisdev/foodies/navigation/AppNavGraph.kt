@@ -1,5 +1,6 @@
 package com.alexisdev.foodies.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -7,7 +8,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.alexisdev.product_catalog.presentation.SearchScreenContent
+import com.alexisdev.cart.presentation.CartScreen
+import com.alexisdev.cart.presentation.CartViewModel
+import com.alexisdev.product_catalog.presentation.SearchScreen
 import com.alexisdev.product_catalog.presentation.ProductCatalogScreen
 import com.alexisdev.product_catalog.presentation.ProductCatalogViewModel
 import com.alexisdev.product_catalog.presentation.SearchViewModel
@@ -29,7 +32,7 @@ fun AppNavGraph(
 
         composable(route = Route.SplashScreen.route) {
             SplashScreen {
-                navController.navigate(route = Route.Catalog.route)
+                navController.navigateSingleTopTo(route = Route.Catalog.route)
             }
         }
 
@@ -37,15 +40,19 @@ fun AppNavGraph(
             val productCatalogViewModel = koinViewModel<ProductCatalogViewModel>()
             ProductCatalogScreen(
                 productCatalogViewModel,
-                { mealId ->
-                    navController.navigate(route = "${Route.ProductDetails.route}/" + mealId)
-                }
+                onClickItem = { mealId ->
+                    navController.navigateSingleTopTo(route = "${Route.ProductDetails.route}/" + mealId)
+                },
+                onNavigateToCart = {
+                    navController.navigateSingleTopTo(route = Route.ShoppingCart.route)
+                },
+                modifier = Modifier.fillMaxSize()
             )
         }
 
         composable(route = Route.CatalogSearch.route) {
             val searchViewModel = koinViewModel<SearchViewModel>()
-            SearchScreenContent(
+            SearchScreen(
                 viewModel = searchViewModel,
                 onClickItem = { idMeal ->
                     navController.navigate("${Route.ProductDetails.route}/" + idMeal)
@@ -71,7 +78,14 @@ fun AppNavGraph(
         }
 
         composable(route = Route.ShoppingCart.route) {
-
+            val cartViewModel = koinViewModel<CartViewModel>()
+            CartScreen(
+                viewModel = cartViewModel,
+                onClickItem = { idMeal ->
+                    navController.navigate("${Route.ProductDetails.route}/" + idMeal)
+                },
+                modifier = Modifier.fillMaxSize()
+            )
         }
     }
 }

@@ -13,7 +13,7 @@ import com.alexisdev.foodies.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CatalogTopBar(
-    onFilterClick: () -> Unit,
+    onCartClick: () -> Unit,
     onSearchActionClick: () -> Unit
 ) {
     CenterAlignedTopAppBar(
@@ -24,9 +24,9 @@ fun CatalogTopBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = onFilterClick) {
+            IconButton(onClick = onCartClick) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_filter),
+                    painter = painterResource(id = R.drawable.ic_cart),
                     contentDescription = null
                 )
             }

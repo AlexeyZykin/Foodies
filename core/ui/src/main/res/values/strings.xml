@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="filter_bottom_sheet_title">Подобрать блюда</string>
+    <string name="filter_ready">Готово</string>
+    <string name="meal_image">Meal image</string>
+    <string name="search_placeholder">Search meal</string>
+
+    <string name="details_tags">Tags:</string>
+    <string name="details_category">Category:</string>
+    <string name="details_meal_area">Meal area:</string>
+    <string name="details_method_of_preparation">Method of preparation</string>
+
+    <string name="rub_currency">rub</string>
+</resources>

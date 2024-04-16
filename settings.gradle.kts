@@ -15,8 +15,15 @@ dependencyResolutionManagement {
 
 rootProject.name = "Foodies"
 include(":app")
-include(":core")
-include(":products_api")
+
 include(":features:product_catalog")
 include(":features:splashscreen")
 include(":features:product_details")
+include(":features:cart")
+
+include(":core:products_api")
+include(":core:ui")
+include(":core:model")
+include(":core:domain")
+include(":core:database")
+include(":core:data")

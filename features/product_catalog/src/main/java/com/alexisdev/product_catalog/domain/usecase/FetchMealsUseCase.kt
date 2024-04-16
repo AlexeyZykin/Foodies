@@ -1,6 +1,6 @@
 package com.alexisdev.product_catalog.domain.usecase
 
-import com.alexisdev.product_catalog.domain.model.Meal
+import com.alexisdev.model.Meal
 import com.alexisdev.product_catalog.domain.repository.ProductCatalogRepository
 import kotlinx.coroutines.flow.Flow
 

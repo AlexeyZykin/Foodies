@@ -1,7 +1,7 @@
 package com.alexisdev.product_catalog.domain.repository
 
-import com.alexisdev.product_catalog.domain.model.Category
-import com.alexisdev.product_catalog.domain.model.Meal
+import com.alexisdev.model.Meal
+import com.alexisdev.model.Category
 import kotlinx.coroutines.flow.Flow
 
 interface ProductCatalogRepository {

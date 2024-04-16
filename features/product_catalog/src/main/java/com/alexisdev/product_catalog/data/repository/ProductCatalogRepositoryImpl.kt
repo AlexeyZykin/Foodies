@@ -1,16 +1,15 @@
 package com.alexisdev.product_catalog.data.repository
 
+import com.alexisdev.model.Meal
 import com.alexisdev.product_catalog.data.mapper.toCategory
 import com.alexisdev.product_catalog.data.mapper.toMeal
-import com.alexisdev.product_catalog.domain.model.Category
-import com.alexisdev.product_catalog.domain.model.Meal
+import com.alexisdev.model.Category
 import com.alexisdev.product_catalog.domain.repository.ProductCatalogRepository
 import com.alexisdev.products_api.ProductsApi
 import com.alexisdev.products_api.model.MealDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapNotNull
 
 class ProductCatalogRepositoryImpl(private val productsApi: ProductsApi) :
     ProductCatalogRepository {

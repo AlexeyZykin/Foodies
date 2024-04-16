@@ -1,6 +1,6 @@
 package com.alexisdev.product_details.data
 
-import com.alexisdev.product_details.domain.Meal
+import com.alexisdev.model.Meal
 import com.alexisdev.products_api.model.MealDTO
 
 

@@ -28,7 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.alexisdev.product_details.R
+import com.alexisdev.model.Meal
+import com.alexisdev.core.R
 
 @Composable
 fun ProductDetailsScreen(
@@ -56,7 +57,7 @@ fun ProductDetailsScreen(
 
 
 @Composable
-fun ProductDetailsContent(meal: MealUi, modifier: Modifier = Modifier) {
+fun ProductDetailsContent(meal: Meal, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         AsyncImage(
             model = meal.strMealThumb,
@@ -75,26 +76,23 @@ fun ProductDetailsContent(meal: MealUi, modifier: Modifier = Modifier) {
             modifier = Modifier.padding(horizontal = 8.dp)
         )
 
-        Row(modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
-            Text(text = stringResource(R.string.details_category))
-            Spacer(modifier = Modifier.width(8.dp))
-            if (meal.strCategory != null)
-                Text(text = meal.strCategory)
-        }
+        DetailsPosition(
+            subTitle = stringResource(R.string.details_category),
+            data = meal.strCategory,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
+        )
 
-        Row(modifier = Modifier.padding(horizontal = 8.dp)) {
-            Text(text = stringResource(R.string.details_tags))
-            Spacer(modifier = Modifier.width(8.dp))
-            if (meal.strTags != null)
-                Text(text = meal.strTags)
-        }
+        DetailsPosition(
+            subTitle = stringResource(R.string.details_tags),
+            data = meal.strTags,
+            modifier = Modifier.padding(horizontal = 8.dp)
+        )
 
-        Row(modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
-            Text(text = stringResource(R.string.details_meal_area))
-            Spacer(modifier = Modifier.width(8.dp))
-            if (meal.strArea != null)
-                Text(text = meal.strArea)
-        }
+        DetailsPosition(
+            subTitle = stringResource(R.string.details_meal_area),
+            data = meal.strArea,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
+        )
 
         Text(
             text = stringResource(id = R.string.details_method_of_preparation),
@@ -103,12 +101,20 @@ fun ProductDetailsContent(meal: MealUi, modifier: Modifier = Modifier) {
                 .align(Alignment.CenterHorizontally)
                 .padding(vertical = 8.dp)
         )
-
-        if (meal.strInstructions != null)
-            Text(text = meal.strInstructions, Modifier.padding(horizontal = 8.dp))
+        meal.strInstructions?.let {
+            Text(text = it, Modifier.padding(horizontal = 8.dp))
+        }
     }
 }
 
+@Composable
+fun DetailsPosition(subTitle: String, data: String?, modifier: Modifier = Modifier) {
+    Row(modifier = modifier) {
+        Text(text = subTitle)
+        Spacer(modifier = Modifier.width(8.dp))
+        data?.let { Text(text = it) }
+    }
+}
 
 @Composable
 fun BackButton(onClick: () -> Unit) {
