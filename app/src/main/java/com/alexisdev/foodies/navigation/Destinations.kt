@@ -1,6 +1,7 @@
 package com.alexisdev.foodies.navigation
 
 val foodiesScreens = listOf(
+    Route.SplashScreen,
     Route.Catalog,
     Route.CatalogFilter,
     Route.CatalogSearch,

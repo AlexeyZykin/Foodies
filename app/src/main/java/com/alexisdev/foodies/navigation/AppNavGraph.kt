@@ -2,11 +2,14 @@ package com.alexisdev.foodies.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.alexisdev.cart.CartScreen
 import com.alexisdev.cart.CartViewModel
@@ -32,7 +35,11 @@ fun AppNavGraph(
 
         composable(route = Route.SplashScreen.route) {
             SplashScreen {
-                navController.navigateSingleTopTo(route = Route.Catalog.route)
+                navController.navigate(route = Route.Catalog.route) {
+                    popUpTo(Route.SplashScreen.route) {
+                        inclusive = true
+                    }
+                }
             }
         }
 
