@@ -91,6 +91,7 @@ fun AppNavGraph(
                 onClickItem = { idMeal ->
                     navController.navigate("${Route.ProductDetails.route}/" + idMeal)
                 },
+                onNavigateToCheckout = { },
                 modifier = Modifier.fillMaxSize()
             )
         }

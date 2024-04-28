@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,6 +45,7 @@ fun MealItem(
                 model = mealItemState.meal.strMealThumb,
                 contentDescription = stringResource(R.string.meal_image),
                 placeholder = painterResource(id = R.drawable.ic_food_placeholder),
+                contentScale = ContentScale.FillWidth,
                 modifier = Modifier
                     .weight(0.5f)
             )

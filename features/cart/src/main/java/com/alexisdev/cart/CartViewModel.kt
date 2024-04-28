@@ -29,7 +29,7 @@ class CartViewModel(
         getCartUseCase.invoke().distinctUntilChanged().collect { cartItems ->
             Log.d("CartViewModel", cartItems.toString())
             var totalPrice = 0
-            cartItems.forEach { totalPrice = it.price * it.quantity }
+            cartItems.forEach { totalPrice += it.price * it.quantity }
             state = state.copy(
                 totalPrice = totalPrice,
                 cartItems = cartItems
