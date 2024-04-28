@@ -8,14 +8,14 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.alexisdev.cart.presentation.CartScreen
-import com.alexisdev.cart.presentation.CartViewModel
-import com.alexisdev.product_catalog.presentation.SearchScreen
-import com.alexisdev.product_catalog.presentation.ProductCatalogScreen
-import com.alexisdev.product_catalog.presentation.ProductCatalogViewModel
-import com.alexisdev.product_catalog.presentation.SearchViewModel
-import com.alexisdev.product_details.presentation.ProductDetailsScreen
-import com.alexisdev.product_details.presentation.ProductDetailsViewModel
+import com.alexisdev.cart.CartScreen
+import com.alexisdev.cart.CartViewModel
+import com.alexisdev.product_catalog.screen.SearchScreen
+import com.alexisdev.product_catalog.screen.ProductCatalogScreen
+import com.alexisdev.product_catalog.ProductCatalogViewModel
+import com.alexisdev.product_catalog.SearchViewModel
+import com.alexisdev.product_details.ProductDetailsScreen
+import com.alexisdev.product_details.ProductDetailsViewModel
 import com.alexisdev.splashscreen.SplashScreen
 import org.koin.androidx.compose.koinViewModel
 

@@ -54,9 +54,10 @@ dependencies {
     implementation(project(":features:product_details"))
     implementation(project(":features:cart"))
     implementation(project(":features:splashscreen"))
-    implementation(project(":core:products_api"))
+    implementation(project(":core:network"))
     implementation(project(":core:database"))
     implementation(project(":core:domain"))
+    implementation(project(":core:data"))
     implementation(project(":core:ui"))
 
     implementation(platform(libs.koin.bom))

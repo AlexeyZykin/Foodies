@@ -16,11 +16,11 @@ interface CartDao {
     fun getAll(): Flow<List<CartItemEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(cartItemEntity: CartItemEntity)
+    suspend fun insert(cartItemEntity: CartItemEntity)
 
     @Delete
-    fun delete(cartItemEntity: CartItemEntity)
+    suspend fun delete(cartItemEntity: CartItemEntity)
 
     @Update
-    fun update(cartItemEntity: CartItemEntity)
+    suspend fun update(cartItemEntity: CartItemEntity)
 }

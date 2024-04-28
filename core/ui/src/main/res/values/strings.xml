@@ -10,5 +10,5 @@
     <string name="details_meal_area">Meal area:</string>
     <string name="details_method_of_preparation">Method of preparation</string>
 
-    <string name="rub_currency">rub</string>
+    <string name="rub_currency">₽</string>
 </resources>
