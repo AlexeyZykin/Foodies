@@ -70,23 +70,23 @@ class ProductCatalogViewModel(
             val updatedMealItemState =
                 updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter + 1)
             updatedMealItemsState[index] = updatedMealItemState
-        }
 
-        state = state.copy(
-            mealItemsState = updatedMealItemsState,
-            totalPrice = state.totalPrice + 550
-        )
-
-        addCartUseCase.invoke(
-            //todo
-            CartItem(
-                idMeal = meal.idMeal,
-                strMeal = meal.strMeal,
-                strMealThumb = meal.strMealThumb,
-                price = 550,
-                quantity = 1
+            state = state.copy(
+                mealItemsState = updatedMealItemsState,
+                totalPrice = state.totalPrice + 550
             )
-        )
+
+            addCartUseCase.invoke(
+                //todo
+                CartItem(
+                    idMeal = meal.idMeal,
+                    strMeal = meal.strMeal,
+                    strMealThumb = meal.strMealThumb,
+                    price = 550,
+                    quantity = updatedMealItemState.counter
+                )
+            )
+        }
     }
 
     fun removeCart(meal: Meal) = viewModelScope.launch(Dispatchers.IO) {
@@ -97,21 +97,21 @@ class ProductCatalogViewModel(
             val updatedMealItemState =
                 updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter - 1)
             updatedMealItemsState[index] = updatedMealItemState
-        }
 
-        state = state.copy(
-            mealItemsState = updatedMealItemsState,
-            totalPrice = state.totalPrice - 550
-        )
-
-        removeCartUseCase.invoke(
-            CartItem(
-                idMeal = meal.idMeal,
-                strMeal = meal.strMeal,
-                strMealThumb = meal.strMealThumb,
-                price = 550,
-                quantity = 1
+            state = state.copy(
+                mealItemsState = updatedMealItemsState,
+                totalPrice = state.totalPrice - 550
             )
-        )
+
+            removeCartUseCase.invoke(
+                CartItem(
+                    idMeal = meal.idMeal,
+                    strMeal = meal.strMeal,
+                    strMealThumb = meal.strMealThumb,
+                    price = 550,
+                    quantity = updatedMealItemState.counter
+                )
+            )
+        }
     }
 }

@@ -15,14 +15,15 @@ internal class CartRepositoryImpl(private val cartDao: CartDao) : CartRepository
     }
 
     override suspend fun addCart(cartItem: CartItem) {
-        cartDao.insert(cartItem.toCartItemEntity())
+        val cartItemEntity = cartItem.toCartItemEntity()
+        cartDao.insert(cartItemEntity)
     }
 
     override suspend fun removeCart(cartItem: CartItem) {
-        val cartEntity = cartItem.toCartItemEntity()
-        if (cartItem.quantity > 1)
-            cartDao.update(cartEntity)
+        val cartItemEntity = cartItem.toCartItemEntity()
+        if (cartItemEntity.quantity > 0)
+            cartDao.update(cartItemEntity)
         else
-            cartDao.delete(cartEntity)
+            cartDao.delete(cartItemEntity)
     }
 }

@@ -10,6 +10,7 @@ import com.alexisdev.domain.AddCartUseCase
 import com.alexisdev.domain.GetCartUseCase
 import com.alexisdev.domain.RemoveCartUseCase
 import com.alexisdev.model.CartItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -25,9 +26,8 @@ class CartViewModel(
         getCart()
     }
 
-    private fun getCart() = viewModelScope.launch {
+    private fun getCart() = viewModelScope.launch(Dispatchers.IO) {
         getCartUseCase.invoke().distinctUntilChanged().collect { cartItems ->
-            Log.d("CartViewModel", cartItems.toString())
             var totalPrice = 0
             cartItems.forEach { totalPrice += it.price * it.quantity }
             state = state.copy(
@@ -37,12 +37,12 @@ class CartViewModel(
         }
     }
 
-    fun addCart(cartItem: CartItem) = viewModelScope.launch {
+    fun addCart(cartItem: CartItem) = viewModelScope.launch(Dispatchers.IO) {
         val updatedCartItem = cartItem.copy(quantity = cartItem.quantity + 1)
         addCartUseCase.invoke(updatedCartItem)
     }
 
-    fun removeCart(cartItem: CartItem) = viewModelScope.launch {
+    fun removeCart(cartItem: CartItem) = viewModelScope.launch(Dispatchers.IO) {
         val updatedCartItem = cartItem.copy(quantity = cartItem.quantity - 1)
         removeCartUseCase.invoke(updatedCartItem)
     }

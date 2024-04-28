@@ -65,8 +65,8 @@ fun CartItem(
                 )
                 CounterCard(
                     count = cartItem.quantity,
-                    onMinusClick = { onMealIncrease(cartItem) },
-                    onPlusClick = { onMealDecrease(cartItem) },
+                    onMinusClick = { onMealDecrease(cartItem) },
+                    onPlusClick = { onMealIncrease(cartItem) },
                     modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
                 )
             }
