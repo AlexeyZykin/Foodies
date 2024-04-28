@@ -1,5 +1,7 @@
 package com.alexisdev.products_api
 
+import com.alexisdev.network.BuildConfig
+
 internal object Config {
-    const val BASE_URL = "https://themealdb.com/api/json/v1/1/"
+    const val BASE_URL = BuildConfig.BASE_URL
 }
