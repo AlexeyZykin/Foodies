@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alexisdev.cart.CartState
-import com.alexisdev.core.R
+import com.alexisdev.cart.R
 import com.alexisdev.core.ui.components.FoodiesButton
 
 @Composable
@@ -22,7 +22,7 @@ fun OrderButton(
         Surface(modifier = Modifier.fillMaxWidth()) {
             if (state.totalPrice != 0) {
                 FoodiesButton(
-                    label = "Заказать за ${state.totalPrice} ${
+                    label = "${stringResource(id = R.string.order_button)} ${state.totalPrice} ${
                         stringResource(id = R.string.rub_currency)
                     }",
                     onClick = onClick,

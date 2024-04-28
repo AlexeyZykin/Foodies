@@ -2,6 +2,7 @@ package com.alexisdev.core.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +15,7 @@ fun FoodiesButton(
     onClick: () -> Unit
 ) {
     Button(onClick = onClick, modifier = modifier) {
-        Text(text = label)
+        Text(text = label, style = MaterialTheme.typography.titleMedium)
     }
 }
 

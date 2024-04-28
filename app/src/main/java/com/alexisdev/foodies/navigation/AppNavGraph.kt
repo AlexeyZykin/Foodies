@@ -92,6 +92,14 @@ fun AppNavGraph(
                     navController.navigate("${Route.ProductDetails.route}/" + idMeal)
                 },
                 onNavigateToCheckout = { },
+                onClickEmptyCartButton = {
+                    navController.navigate(Route.Catalog.route) {
+                        launchSingleTop = true
+                        popUpTo(Route.ShoppingCart.route) {
+                            inclusive = true
+                        }
+                    }
+                },
                 modifier = Modifier.fillMaxSize()
             )
         }

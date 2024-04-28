@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="order_button">Pay</string>
+    <string name="rub_currency">₽</string>
+    <string name="empty_cart_button">To menu</string>
+</resources>
