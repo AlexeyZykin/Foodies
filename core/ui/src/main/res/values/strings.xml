@@ -3,12 +3,16 @@
     <string name="filter_bottom_sheet_title">Подобрать блюда</string>
     <string name="filter_ready">Готово</string>
     <string name="meal_image">Meal image</string>
-    <string name="search_placeholder">Search meal</string>
 
     <string name="details_tags">Tags:</string>
     <string name="details_category">Category:</string>
     <string name="details_meal_area">Meal area:</string>
     <string name="details_method_of_preparation">Method of preparation</string>
 
+    <string name="button_navigate_to_cart">To cart</string>
+    <string name="search_placeholder">Search meal</string>
+    <string name="empty_search">Nothing was found for your request.</string>
+
     <string name="rub_currency">₽</string>
+    <string name="navigate_to_cart_button">В корзине</string>
 </resources>

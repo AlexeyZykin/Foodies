@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alexisdev.core.ui.components.FoodiesButton
-import com.alexisdev.product_catalog.R
 import com.alexisdev.product_catalog.ProductCatalogState
+import com.alexisdev.core.R
 
 @Composable
 fun NavigateToCartButton(
@@ -23,7 +23,7 @@ fun NavigateToCartButton(
             if (state.totalPrice != 0) {
                 FoodiesButton(
                     label = "${stringResource(R.string.button_navigate_to_cart)} ${state.totalPrice} ${
-                        stringResource(id = com.alexisdev.core.R.string.rub_currency)}",
+                        stringResource(id = R.string.rub_currency)}",
                     onClick = onClick,
                     modifier = Modifier
                         .fillMaxWidth()

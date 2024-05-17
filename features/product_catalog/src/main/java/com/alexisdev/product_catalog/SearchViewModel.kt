@@ -36,21 +36,26 @@ class SearchViewModel(
         val index = updatedMealItemsState.indexOfFirst { it.meal == meal }
 
         if (index != -1) {
-            val updatedMealItemState = updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter + 1)
+            val updatedMealItemState =
+                updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter + 1)
             updatedMealItemsState[index] = updatedMealItemState
-        }
 
-        state = state.copy(mealItemsState = updatedMealItemsState)
-        addCartUseCase.invoke(
-            //todo
-            CartItem(
-                idMeal = meal.idMeal,
-                strMeal = meal.strMeal,
-                strMealThumb = meal.strMealThumb,
-                price = 550,
-                quantity = 2
+            state = state.copy(
+                mealItemsState = updatedMealItemsState,
+                totalPrice = state.totalPrice + 550
             )
-        )
+
+            addCartUseCase.invoke(
+                //todo
+                CartItem(
+                    idMeal = meal.idMeal,
+                    strMeal = meal.strMeal,
+                    strMealThumb = meal.strMealThumb,
+                    price = 550,
+                    quantity = updatedMealItemState.counter
+                )
+            )
+        }
     }
 
     fun removeCart(meal: Meal) = viewModelScope.launch(Dispatchers.IO) {
@@ -58,19 +63,24 @@ class SearchViewModel(
         val index = updatedMealItemsState.indexOfFirst { it.meal == meal }
 
         if (index != -1) {
-            val updatedMealItemState = updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter - 1)
+            val updatedMealItemState =
+                updatedMealItemsState[index].copy(counter = updatedMealItemsState[index].counter - 1)
             updatedMealItemsState[index] = updatedMealItemState
-        }
 
-        state = state.copy(mealItemsState = updatedMealItemsState)
-        removeCartUseCase.invoke(
-            CartItem(
-                idMeal = meal.idMeal,
-                strMeal = meal.strMeal,
-                strMealThumb = meal.strMealThumb,
-                price = 550,
-                quantity = 1
+            state = state.copy(
+                mealItemsState = updatedMealItemsState,
+                totalPrice = state.totalPrice - 550
             )
-        )
+
+            removeCartUseCase.invoke(
+                CartItem(
+                    idMeal = meal.idMeal,
+                    strMeal = meal.strMeal,
+                    strMealThumb = meal.strMealThumb,
+                    price = 550,
+                    quantity = updatedMealItemState.counter
+                )
+            )
+        }
     }
 }

@@ -31,15 +31,17 @@ import coil.compose.AsyncImage
 import com.alexisdev.model.Meal
 import com.alexisdev.core.R
 import com.alexisdev.core.ui.components.BackButton
+import com.alexisdev.product_details.components.AddToCartButton
 
 @Composable
 fun ProductDetailsScreen(
     mealId: Int,
     viewModel: ProductDetailsViewModel,
+    onNavigateToCart: () -> Unit,
     onBack: () -> Unit
 ) {
     viewModel.fetchMealDetails(mealId)
-    val meal = viewModel.meal.observeAsState().value
+    val meal = viewModel.state.meal
     Surface(modifier = Modifier.fillMaxSize()) {
         if (meal != null) {
             ProductDetailsContent(
@@ -53,6 +55,13 @@ fun ProductDetailsScreen(
         ) {
             BackButton(onBack)
         }
+        AddToCartButton(
+            state = viewModel.state,
+            onFirstClick = { viewModel.addMealToCart(meal) },
+            onNavigateToCart = onNavigateToCart,
+            onMealIncrease = { viewModel.addMealToCart(meal) },
+            onMealDecrease = { viewModel.removeMealFromCart(meal) }
+        )
     }
 }
 

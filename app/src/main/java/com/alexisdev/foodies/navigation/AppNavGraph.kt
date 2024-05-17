@@ -64,6 +64,7 @@ fun AppNavGraph(
                 onClickItem = { idMeal ->
                     navController.navigate("${Route.ProductDetails.route}/" + idMeal)
                 },
+                onNavigateToCart = { navController.navigateSingleTopTo(Route.ShoppingCart.route) },
                 onBack = { navController.navigateUp() }
             )
         }
@@ -79,9 +80,12 @@ fun AppNavGraph(
             val productDetailsViewModel = koinViewModel<ProductDetailsViewModel>()
             val mealId = requireNotNull(backStackEntry.arguments)
                 .getInt("mealId")
-            ProductDetailsScreen(mealId = mealId, viewModel = productDetailsViewModel) {
-                navController.navigateUp()
-            }
+            ProductDetailsScreen(
+                mealId = mealId,
+                viewModel = productDetailsViewModel,
+                onNavigateToCart = { navController.navigateSingleTopTo(route = Route.ShoppingCart.route) },
+                onBack = { navController.navigateUp() }
+            )
         }
 
         composable(route = Route.ShoppingCart.route) {

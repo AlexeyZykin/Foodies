@@ -1,5 +1,8 @@
 package com.alexisdev.product_catalog.screen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -21,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -29,12 +33,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.alexisdev.core.R
 import com.alexisdev.product_catalog.SearchViewModel
 import com.alexisdev.product_catalog.components.MealList
+import com.alexisdev.product_catalog.components.NavigateToCartButton
 
 
 @Composable
 fun SearchScreen(
     viewModel: SearchViewModel,
     onClickItem: (Int) -> Unit,
+    onNavigateToCart: () -> Unit,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -43,7 +49,8 @@ fun SearchScreen(
         SearchScreenContent(
             viewModel = viewModel,
             onClickItem = onClickItem,
-            modifier = Modifier.padding(innerPadding)
+            onNavigateToCart = onNavigateToCart,
+            modifier = Modifier.padding(innerPadding).fillMaxSize()
         )
     }
 }
@@ -52,6 +59,7 @@ fun SearchScreen(
 fun SearchScreenContent(
     viewModel: SearchViewModel,
     onClickItem: (Int) -> Unit,
+    onNavigateToCart: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val state = viewModel.state
@@ -67,7 +75,24 @@ fun SearchScreenContent(
                 },
                 onClickItem = onClickItem
             )
+        } else {
+            EmptySearchContent()
         }
+        NavigateToCartButton(
+            state = state,
+            onClick = onNavigateToCart
+        )
+    }
+}
+
+@Composable
+fun EmptySearchContent() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = stringResource(id = R.string.empty_search))
     }
 }
 
