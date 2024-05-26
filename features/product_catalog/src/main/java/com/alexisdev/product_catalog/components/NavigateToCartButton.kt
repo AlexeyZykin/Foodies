@@ -9,20 +9,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.alexisdev.core.ui.components.FoodiesButton
-import com.alexisdev.product_catalog.ProductCatalogState
 import com.alexisdev.core.R
+import com.alexisdev.core.ui.components.FoodiesButton
 
 @Composable
 fun NavigateToCartButton(
-    state: ProductCatalogState,
+    totalPrice: Int,
     onClick: () -> Unit
 ) {
     Box(contentAlignment = Alignment.BottomCenter) {
         Surface(modifier = Modifier.fillMaxWidth()) {
-            if (state.totalPrice != 0) {
+            if (totalPrice != 0) {
                 FoodiesButton(
-                    label = "${stringResource(R.string.button_navigate_to_cart)} ${state.totalPrice} ${
+                    label = "${stringResource(R.string.button_navigate_to_cart)} $totalPrice ${
                         stringResource(id = R.string.rub_currency)}",
                     onClick = onClick,
                     modifier = Modifier

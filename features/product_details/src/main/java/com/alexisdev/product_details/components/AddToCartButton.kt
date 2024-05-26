@@ -18,7 +18,8 @@ import com.alexisdev.product_details.ProductDetailsState
 
 @Composable
 fun AddToCartButton(
-    state: ProductDetailsState,
+    counter: Int,
+    meal: Meal,
     onFirstClick: () -> Unit,
     onNavigateToCart: () -> Unit,
     onMealIncrease: (Meal) -> Unit,
@@ -26,7 +27,7 @@ fun AddToCartButton(
 ) {
     Box(contentAlignment = Alignment.BottomCenter) {
         Surface(modifier = Modifier.fillMaxWidth()) {
-            if (state.counter != 0) {
+            if (counter != 0) {
                 Row {
                     NavigateToCartButton(
                         onNavigateToCart,
@@ -40,9 +41,9 @@ fun AddToCartButton(
                             .align(Alignment.CenterVertically)
                     ) {
                         CounterCard(
-                            count = state.counter,
-                            onPlusClick = { onMealIncrease(state.meal) },
-                            onMinusClick = { onMealDecrease(state.meal) }
+                            count = counter,
+                            onPlusClick = { onMealIncrease(meal) },
+                            onMinusClick = { onMealDecrease(meal) }
                         )
                     }
                 }

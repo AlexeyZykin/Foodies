@@ -2,7 +2,12 @@ package com.alexisdev.product_details
 
 import com.alexisdev.model.Meal
 
-data class ProductDetailsState(
-    val meal: Meal = Meal(0, "", "", "", "", "", "", ""),
-    val counter: Int = 0,
-)
+sealed interface ProductDetailsState {
+    data object Loading : ProductDetailsState
+    data class Error(val msg: String) : ProductDetailsState
+    data class Success(
+        val meal: Meal,
+        val counter: Int = 0,
+    ) : ProductDetailsState
+}
+

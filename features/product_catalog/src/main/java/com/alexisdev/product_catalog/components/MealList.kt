@@ -8,17 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexisdev.model.Meal
+import com.alexisdev.product_catalog.MealItemState
 import com.alexisdev.product_catalog.ProductCatalogState
+import com.alexisdev.product_catalog.ProductUiState
 
 @Composable
 fun MealList(
-    state: ProductCatalogState,
+    meals: List<MealItemState>,
     onMealIncrease: (Meal) -> Unit,
     onMealDecrease: (Meal) -> Unit,
     onClickItem: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val meals = state.mealItemsState
     LazyColumn(modifier = modifier) {
         items(meals) { item ->
             MealItem(

@@ -19,6 +19,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import com.alexisdev.core.R
+import com.alexisdev.product_catalog.SearchUiState
 import com.alexisdev.product_catalog.SearchViewModel
 import com.alexisdev.product_catalog.components.MealList
 import com.alexisdev.product_catalog.components.NavigateToCartButton
@@ -50,7 +52,9 @@ fun SearchScreen(
             viewModel = viewModel,
             onClickItem = onClickItem,
             onNavigateToCart = onNavigateToCart,
-            modifier = Modifier.padding(innerPadding).fillMaxSize()
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         )
     }
 }
@@ -62,26 +66,30 @@ fun SearchScreenContent(
     onNavigateToCart: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val state = viewModel.state
+    val searchState by viewModel.searchUiState.collectAsState()
     Surface(modifier = modifier) {
-        if (state.mealItemsState.isNotEmpty()) {
-            MealList(
-                state = state,
-                onMealIncrease = { meal ->
-                    viewModel.addCart(meal)
-                },
-                onMealDecrease = { meal ->
-                    viewModel.removeCart(meal)
-                },
-                onClickItem = onClickItem
-            )
-        } else {
-            EmptySearchContent()
+        when (val state = searchState) {
+            is SearchUiState.Loading -> {}
+
+            is SearchUiState.EmptyQuery -> EmptySearchContent()
+
+            is SearchUiState.Success -> {
+                MealList(
+                    meals = state.mealItemsState,
+                    onMealIncrease = { meal ->
+                        viewModel.addCart(meal)
+                    },
+                    onMealDecrease = { meal ->
+                        viewModel.removeCart(meal)
+                    },
+                    onClickItem = onClickItem
+                )
+                NavigateToCartButton(
+                    totalPrice = state.totalPrice,
+                    onClick = onNavigateToCart
+                )
+            }
         }
-        NavigateToCartButton(
-            state = state,
-            onClick = onNavigateToCart
-        )
     }
 }
 

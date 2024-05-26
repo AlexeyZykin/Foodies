@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.alexisdev.domain"
+    namespace = "com.alexisdev.common"
     compileSdk = 34
 
     defaultConfig {
@@ -20,11 +20,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data"))
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.coroutines)
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

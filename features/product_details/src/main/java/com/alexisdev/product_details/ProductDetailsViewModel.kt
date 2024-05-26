@@ -13,7 +13,13 @@ import com.alexisdev.domain.RemoveCartUseCase
 import com.alexisdev.model.CartItem
 import com.alexisdev.model.Meal
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ProductDetailsViewModel(
@@ -21,44 +27,66 @@ class ProductDetailsViewModel(
     private val addCartUseCase: AddCartUseCase,
     private val removeCartUseCase: RemoveCartUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(ProductDetailsState())
-        private set
+
+    private val _mealDetailsState: MutableStateFlow<ProductDetailsState> =
+        MutableStateFlow(ProductDetailsState.Loading)
+    val mealDetailsState = _mealDetailsState.asStateFlow()
+
 
     fun fetchMealDetails(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-        fetchMealDetailsUseCase.invoke(id).distinctUntilChanged().collect { meal ->
-            state = state.copy(
-                meal = meal
-            )
-        }
+        fetchMealDetailsUseCase.invoke(id)
+            .distinctUntilChanged()
+            .catch { exception ->
+                exception.message?.let {
+                    _mealDetailsState.value = ProductDetailsState.Error(it)
+                }
+            }
+            .collect { meal ->
+                _mealDetailsState.value = ProductDetailsState.Success(meal = meal)
+            }
     }
 
     fun addMealToCart(meal: Meal) = viewModelScope.launch(Dispatchers.IO) {
-        state = state.copy(
-            counter = state.counter + 1
-        )
-        addCartUseCase.invoke(
-            CartItem(
-                idMeal = state.meal.idMeal,
-                strMeal = state.meal.strMeal,
-                strMealThumb = state.meal.strMealThumb,
-                price = 550,
-                quantity = state.counter
-            )
-        )
+        _mealDetailsState.update { state ->
+            when (state) {
+                is ProductDetailsState.Success -> {
+                    val newCounter = state.counter + 1
+                    addCartUseCase.invoke(
+                        CartItem(
+                            idMeal = state.meal.idMeal,
+                            strMeal = state.meal.strMeal,
+                            strMealThumb = state.meal.strMealThumb,
+                            price = 550,
+                            quantity = newCounter
+                        )
+                    )
+                    state.copy(counter = newCounter)
+                }
+
+                else -> state
+            }
+        }
     }
 
     fun removeMealFromCart(meal: Meal) = viewModelScope.launch(Dispatchers.IO) {
-        state = state.copy(
-            counter = state.counter - 1
-        )
-        removeCartUseCase.invoke(
-            CartItem(
-                idMeal = state.meal.idMeal,
-                strMeal = state.meal.strMeal,
-                strMealThumb = state.meal.strMealThumb,
-                price = 550,
-                quantity = state.counter
-            )
-        )
+        _mealDetailsState.update { state ->
+            when (state) {
+                is ProductDetailsState.Success -> {
+                    val newCounter = state.counter - 1
+                    removeCartUseCase.invoke(
+                        CartItem(
+                            idMeal = state.meal.idMeal,
+                            strMeal = state.meal.strMeal,
+                            strMealThumb = state.meal.strMealThumb,
+                            price = 550,
+                            quantity = newCounter
+                        )
+                    )
+                    state.copy(counter = newCounter)
+                }
+
+                else -> state
+            }
+        }
     }
 }

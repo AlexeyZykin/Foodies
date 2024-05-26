@@ -9,13 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexisdev.core.ui.components.MealCategoryChip
 import com.alexisdev.model.Category
+import com.alexisdev.product_catalog.CategoryUiState
 import com.alexisdev.product_catalog.ProductCatalogState
 import com.alexisdev.product_catalog.ProductCatalogViewModel
 
 @Composable
 fun MealCategories(
     categories: List<Category>,
-    state: ProductCatalogState,
+    selectedCategory: String,
     viewModel: ProductCatalogViewModel
 ) {
     LazyRow(
@@ -26,7 +27,7 @@ fun MealCategories(
             val strCategory = item.strCategory
             MealCategoryChip(
                 strCategory = strCategory,
-                selectedCategory = state.selectedCategory
+                selectedCategory = selectedCategory
             ) {
                 viewModel.selectCategory(strCategory)
                 viewModel.fetchMealsByCategory(strCategory)
